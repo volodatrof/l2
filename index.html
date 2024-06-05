@@ -18,7 +18,8 @@
     <div id="duplicateCheckResult"></div>
     
     <div id="newArrayResult"></div>
-
+    <div id="evenNumbersResult"></div>
+    
     <script>
         // Створення масиву з 20 випадковими числами
         let array = Array.from({ length: 20 }, () => Math.floor(Math.random() * 100) + 1);
@@ -84,6 +85,18 @@
         newArrayWithoutFirstAndLastElement.forEach((element, index) => {
             let itemString = `[${index + 1}]-${element}`;
             newArrayResultDiv.innerHTML += itemString + '<br>';
+        });
+
+
+        // Фільтрація парних чисел
+        let evenNumbers = array.filter(element => element % 2 === 0);
+
+        // Виведення парних чисел на сторінку
+        let evenNumbersResultDiv = document.getElementById('evenNumbersResult');
+        evenNumbersResultDiv.innerHTML = '<b>Парні числа:</b><br>';
+        evenNumbers.forEach((element, index) => {
+            let itemString = `[${index + 1}]-${element}`;
+            evenNumbersResultDiv.innerHTML += itemString + '<br>';
         });
 
     </script>
