@@ -2,11 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fill Second Half of Array with Zeros</title>
 </head>
 <body>
-    
+ 
+    <div id="arrayResult"></div>
+
+
+    <div id="checkResult"></div>
+
+  
+    <div id="sortedResult"></div>
+
+    <script>
+        // Створення масиву з 20 випадковими числами
+        let array = Array.from({ length: 20 }, () => Math.floor(Math.random() * 100) + 1);
+
+        // Виведення елементів масиву
+        let arrayResultDiv = document.getElementById('arrayResult');
+        arrayResultDiv.innerHTML = '<b>Елементи масиву:</b><br>';
+        array.forEach((element, index) => {
+            let itemString = `[${index + 1}]-${element}`;
+            arrayResultDiv.innerHTML += itemString + '<br>';
+        });
+
+        // Заповнення другої половини масиву нулями
+        let secondHalfStartIndex = Math.ceil(array.length / 2);
+        for (let i = secondHalfStartIndex; i < array.length; i++) {
+            array[i] = 0;
+        }
+
+        // Перевірка, чи є в масиві число, кратне 7
+        let isMultipleOfSeven = array.some(element => element % 7 === 0);
+
+        // Виведення результату перевірки
+        let checkResultDiv = document.getElementById('checkResult');
+        if (isMultipleOfSeven) {
+            checkResultDiv.innerHTML = 'У масиві є число, яке кратне 7.';
+        } else {
+            checkResultDiv.innerHTML = 'У масиві немає числа, яке кратне 7.';
+        }
+
+        // Сортування масиву по спаданню
+        let sortedArray = array.slice().sort((a, b) => b - a);
+
+        // Виведення відсортованого масиву
+        let sortedResultDiv = document.getElementById('sortedResult');
+        sortedResultDiv.innerHTML = '<b>Відсортований масив по спаданню:</b><br>';
+        sortedArray.forEach((element, index) => {
+            let itemString = `[${index + 1}]-${element}`;
+            sortedResultDiv.innerHTML += itemString + '<br>';
+        });
+    </script>
 </body>
 </html>
