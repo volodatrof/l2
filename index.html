@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fill Second Half of Array with Zeros</title>
+    <title>Remove First Three Elements from Array</title>
 </head>
 <body>
- 
+    
     <div id="arrayResult"></div>
-
 
     <div id="checkResult"></div>
 
-  
+    <div id="modifiedArrayResult"></div>
+
     <div id="sortedResult"></div>
+
+    <div id="duplicateCheckResult"></div>
+    
+    <div id="newArrayResult"></div>
 
     <script>
         // Створення масиву з 20 випадковими числами
@@ -27,11 +31,16 @@
             arrayResultDiv.innerHTML += itemString + '<br>';
         });
 
-        // Заповнення другої половини масиву нулями
-        let secondHalfStartIndex = Math.ceil(array.length / 2);
-        for (let i = secondHalfStartIndex; i < array.length; i++) {
-            array[i] = 0;
-        }
+        // Видалення перших трьох елементів масиву
+        let removedElements = array.splice(0, 3);
+
+        // Виведення масиву без перших трьох елементів
+        let modifiedArrayResultDiv = document.getElementById('modifiedArrayResult');
+        modifiedArrayResultDiv.innerHTML = '<b>Масив без перших трьох елементів:</b><br>';
+        array.forEach((element, index) => {
+            let itemString = `[${index + 1}]-${element}`;
+            modifiedArrayResultDiv.innerHTML += itemString + '<br>';
+        });
 
         // Перевірка, чи є в масиві число, кратне 7
         let isMultipleOfSeven = array.some(element => element % 7 === 0);
@@ -54,6 +63,29 @@
             let itemString = `[${index + 1}]-${element}`;
             sortedResultDiv.innerHTML += itemString + '<br>';
         });
+
+        // Перевірка, чи має масив однакові елементи
+        let hasDuplicateElements = array.filter((element, index) => array.indexOf(element) !== index).length > 0;
+
+        // Виведення результату перевірки на наявність дублікатів
+        let duplicateCheckResultDiv = document.getElementById('duplicateCheckResult');
+        if (hasDuplicateElements) {
+            duplicateCheckResultDiv.innerHTML = 'У масиві є дублікати.';
+        } else {
+            duplicateCheckResultDiv.innerHTML = 'У масиві немає дублікатів.';
+        }
+        
+        // Створення нового масиву без першого і останнього елемента
+        let newArrayWithoutFirstAndLastElement = array.slice(1, array.length - 1);
+
+        // Виведення нового масиву без першого і останнього елемента
+        let newArrayResultDiv = document.getElementById('newArrayResult');
+        newArrayResultDiv.innerHTML = '<b>Новий масив без першого і останнього елементів:</b><br>';
+        newArrayWithoutFirstAndLastElement.forEach((element, index) => {
+            let itemString = `[${index + 1}]-${element}`;
+            newArrayResultDiv.innerHTML += itemString + '<br>';
+        });
+
     </script>
 </body>
 </html>
